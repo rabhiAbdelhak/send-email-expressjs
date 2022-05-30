@@ -1,6 +1,7 @@
 require('dotenv').config();
 require('express-async-errors');
 
+const {sendEmail} = require('./controllers/sendEmail');
 const express = require('express');
 const app = express();
 
@@ -14,6 +15,8 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('<h1>Email Project</h1>');
 });
+
+app.get('/email', sendEmail);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
